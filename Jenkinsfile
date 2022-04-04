@@ -7,5 +7,23 @@ pipeline {
       }
     }
 
+    stage('mvn') {
+      steps {
+        sh 'mvn clean install'
+      }
+    }
+
+    stage('test') {
+      steps {
+        junit 'target/surefire-reports/TEST-*.xml'
+      }
+    }
+
+    stage('deploy') {
+      steps {
+        sh 'echo "deploy"'
+      }
+    }
+
   }
 }
